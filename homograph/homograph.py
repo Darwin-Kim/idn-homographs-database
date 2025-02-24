@@ -35,7 +35,6 @@ def looks_similar(domain1, domain2):
 def generate_similar_chars(glyph):
   if glyph not in hgdb:
     return ''
-
   return (homoglyph['char'] for homoglyph in hgdb[glyph]['similar_char'])
 
 # This uses a recursive backtracking algorithm.
@@ -46,7 +45,6 @@ def generate_similar_chars(glyph):
 def generate_similar_strings(domain, homograph=''):
   if len(domain) > 253:
     raise NameError('Domain name cannot exceed 253 characters')
-
   if domain == '':
     yield homograph
     return
@@ -55,3 +53,4 @@ def generate_similar_strings(domain, homograph=''):
       yield from generate_similar_strings(domain[1:], homograph + glyph)
 
   yield from generate_similar_strings(domain[1:], homograph + domain[0])
+
